@@ -30,36 +30,105 @@ The dataset contains various health, economic, and demographic indicators for co
 
 ---
 
-## Project Workflow
+## Machine Learning Model
 
-### 1. Problem Framing
-This is a **supervised regression problem**, where the target variable is **Life Expectancy**. The aim is to predict life expectancy using a set of health, economic, and demographic predictors.
+### Model Used: Random Forest Regressor
 
-### 2. Steps Involved
-1. **Data Loading:** The dataset is loaded and inspected for completeness.
-2. **Exploratory Data Analysis (EDA):**
-   - Visualisations to identify correlations and distributions.
-   - Summary statistics and data profiling.
-3. **Data Preprocessing:**
-   - Handling missing values.
-   - Encoding categorical features.
-   - Feature scaling.
-4. **Model Training:**
-   - Multiple machine learning models (e.g., Linear Regression, Random Forest, Gradient Boosting) are trained and evaluated.
-5. **Fine-Tuning:**
-   - Hyperparameter optimisation using GridSearchCV.
-6. **Model Evaluation:**
-   - Performance measured with R², Mean Absolute Error (MAE), and Mean Squared Error (MSE).
+#### Why Random Forest?
+- **Handles Complex Relationships:** Random Forest is well-suited for datasets with both linear and non-linear relationships between features.
+- **Outlier Resilience:** It is robust to outliers, which were identified and handled during preprocessing.
+- **Feature Importance:** The model provides an intuitive way to evaluate which features have the most impact on the target variable (Life Expectancy).
+- **Good Generalisation:** Random Forest prevents overfitting by using an ensemble of decision trees.
+
+#### Model Performance
+The model achieved the following performance metrics:
+- **Mean Absolute Error (MAE):** 1.07 years
+- **Mean Squared Error (MSE):** 2.77 years²
+- **R² Score:** 0.97
+
+These metrics indicate an excellent model performance with high predictive power.
+
+---
+
+## Workflow
+
+1. **Exploratory Data Analysis (EDA):**
+   - Visualisations such as histograms, correlation heatmaps, and pair plots were used to understand data distribution and relationships.
+   - Outliers were detected using IQR and Z-Score methods.
+
+   **Visualisations:**
+   - **GDP vs. Life Expectancy:**
+     ![GDP vs. Life Expectancy](images/gdp_vs_life_expectancy.png)
+   - **Average Life Expectancy by Status:**
+     ![Life Expectancy by Status](images/life_expectancy_by_status.png)
+   - **Life Expectancy Trend Over Years:**
+     ![Life Expectancy Trend](images/life_expectancy_trend.png)
+   - **Correlation Heatmap:**
+     ![Correlation Heatmap](images/correlation_heatmap.png)
+
+2. **Data Preprocessing:**
+   - Missing values were filled using the median for numerical features.
+   - Categorical features (`Country` and `Status`) were encoded:
+     - `Status`: One-Hot Encoding was applied to avoid introducing ordinal relationships.
+     - `Country`: Label Encoding was applied due to the large number of unique categories.
+   - Features were scaled to have a mean of 0 and a standard deviation of 1.
+
+3. **Model Training:**
+   - A Random Forest Regressor was trained using an 80-20 train-test split.
+   - Feature scaling was applied to standardise the data for improved model performance.
+
+4. **Evaluation:**
+   - The model was evaluated using MAE, MSE, and R² metrics.
 
 ---
 
 ## Results
 
-### Key Insights:
-- **Socioeconomic factors such as GDP and schooling have a strong positive correlation with life expectancy.**
-- **Diseases like HIV/AIDS negatively impact life expectancy significantly.**
+- The Random Forest model identified **HIV/AIDS** and **Income composition of resources** as the most important features for predicting life expectancy.
+- Feature importance analysis is visualised below:
+  
+  ![Feature Importance](images/feature_importance.png)
 
-### Model Performance:
-- The final Random Forest model achieved:
-  - **R² score:** 0.85
-  - **Mean Absolute Error (MAE):** 2.3 years
+---
+
+## Key Insights
+
+- **Socioeconomic factors are critical:** Features like **GDP** and **Income composition of resources** are the most important predictors of life expectancy, as shown by feature importance analysis.
+- **Health indicators are significant:** Factors such as **HIV/AIDS prevalence** and vaccination rates (e.g., Polio, Hepatitis B) show a strong relationship with life expectancy.
+- **Outliers matter:** Outlier detection and handling improved model performance by ensuring robust predictions.
+- **Random Forest works well for this data:** The model achieved a high R² score of **0.97**, indicating very strong predictive power.
+
+---
+
+## Repository Structure
+
+```
+life-expectancy-prediction/
+│
+├── data/                     # Dataset folder
+│   ├── Life_Expectancy_Data.csv
+│
+├── images/                   # Visualisations
+│   ├── gdp_vs_life_expectancy.png
+│   ├── life_expectancy_by_status.png
+│   ├── life_expectancy_trend.png
+│   ├── correlation_heatmap.png
+│   ├── feature_importance.png
+│
+├── notebooks/                # Jupyter notebooks
+│   ├── Life-Expectancy-Analysis.ipynb
+│
+├── src/                      # Python scripts
+│   ├── main.py               # Main analysis script
+│
+├── README.md                 # Project documentation
+│
+└── requirements.txt          # Python dependencies
+```
+
+---
+
+## Author
+
+Developed by **Your Name**.  
+For inquiries, contact [your-email@example.com](mailto:your-email@example.com).
