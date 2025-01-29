@@ -57,13 +57,13 @@ These metrics indicate an excellent model performance with high predictive power
    - Outliers were detected using IQR and Z-Score methods.
 
    **Visualisations:**
-   - **GDP vs. Life Expectancy:**
+   - **GDP vs. Life Expectancy:** This scatter plot highlights the relationship between GDP and life expectancy.
      ![GDP vs. Life Expectancy](images/gdp_vs_life_expectancy.png)
-   - **Average Life Expectancy by Status:**
+   - **Average Life Expectancy by Status:** This bar chart compares average life expectancy between developed and developing nations.
      ![Life Expectancy by Status](images/life_expectancy_by_status.png)
-   - **Life Expectancy Trend Over Years:**
+   - **Life Expectancy Trend Over Years:** This plot shows the trend of life expectancy globally over different years.
      ![Life Expectancy Trend](images/life_expectancy_trend.png)
-   - **Correlation Heatmap:**
+   - **Correlation Heatmap:** This heatmap illustrates correlations between various socio-economic factors and life expectancy.
      ![Correlation Heatmap](images/correlation_heatmap.png)
 
 2. **Data Preprocessing:**
